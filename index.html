@@ -4,32 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <title>圖片顯示</title>
-    <link rel="stylesheet" href="https://rawgit.com/ademilter/bricklayer/master/dist/bricklayer.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
+    
 </head>
 
 <body>
 
-    <section class="bricklayer" >
-        <!-- item here -->
-        <div class="box"> <img class="item-img" style="visibility:hidden" title="1" id="image1" src="./images/1 - ArsdCGv.jpg" alt=""> 1</div>
-        <div class="box"> <img class="item-img" style="visibility:hidden" title="2" id="image2" src="./images/2 - LNUXzZF.jpg" alt=""> 2</div>
-        <div class="box"> <img class="item-img" style="visibility:hidden" title="3" id="image3" src="./images/3 - kgTEVHZ.jpg" alt=""> 3</div>
-        <div class="box"> <img class="item-img" style="visibility:hidden" title="4" id="image4" src="./images/4 - vZoqs0P.jpg" alt=""> 4</div>
-        <div class="box"> <img class="item-img" style="visibility:hidden" title="5" id="image5" src="./images/5 - SEu9pHo.jpg" alt=""> 5</div>
-        <div class="box"> <img class="item-img" style="visibility:hidden" title="6" id="image6" src="./images/6 - OkKwWM9.jpg" alt=""> 6</div>
-        <div class="box"> <img class="item-img" style="visibility:hidden" title="7" id="image7" src="./images/7 - eUppgFB.jpg" alt=""> 7</div>
-        <div class="box"> <img class="item-img" style="visibility:hidden" title="8" id="image8" src="./images/8 - WAIXTXs.jpg" alt=""> 8</div>
-        <div class="box"> <img class="item-img" style="visibility:hidden" title="9" id="image9" src="./images/9 - vb0uajo.jpg" alt=""> 9</div>
-        <div class="box"> <img class="item-img" style="visibility:hidden" title="10" id="image10" src="./images/10 - s6w2RpD.jpg" alt=""> 10</div>
-    </section>
+    <style>
+
+        .grid-item {
+            width: 99%;
+            margin-bottom: 10px;
+        }
+
+        @media screen and (min-width: 576px) {
+            .grid-item {
+                width: 49%;
+            }
+        }
+
+        @media screen and (min-width: 768px) {
+            .grid-item {
+                width: 32%;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .grid-item {
+                width: 24%;
+            }
+        }
+
+    </style>
+
+    <div style="display: flex;">
+        <div style="width: 20%;">
+
+        </div>
+        <section class="grid" style="width: 70%;">
+            <img class="grid-item " data-aos="zoom-in" src="./images/01.jpg" alt="">
+            <img class="grid-item " data-aos="zoom-in" src="./images/02.jpg" alt="">
+            <img class="grid-item " data-aos="zoom-in" src="./images/03.jpg" alt="">
+            <img class="grid-item " data-aos="zoom-in" src="./images/04.jpg" alt="">
+            <img class="grid-item " data-aos="zoom-in" src="./images/05.jpg" alt="">
+            <img class="grid-item " data-aos="zoom-in" src="./images/06.jpg" alt="">
+            <img class="grid-item " data-aos="zoom-in" src="./images/07.jpg" alt="">
+            <img class="grid-item " data-aos="zoom-in" src="./images/08.jpg" alt="">
+            <img class="grid-item " data-aos="zoom-in" src="./images/09.jpg" alt="">
+            <img class="grid-item " data-aos="zoom-in" src="./images/10.jpg" alt="">
+        </section>
+        <div style="clear: both;"></div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
     <script src="https://rawgit.com/ademilter/bricklayer/master/dist/bricklayer.min.js"></script>
-    <script src="./index.js"></script>
+    <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 
+    <script>
+        
+        var $grid = $('.grid').imagesLoaded( function() {
+            // init Masonry after all images have loaded
+            $grid.masonry({
+                // options
+                itemSelector: '.grid-item',
+                percentPosition: true,
+                gutter: 10,
+            });
+        });
+        
+    </script>
+    
 </body>
 
 </html>
