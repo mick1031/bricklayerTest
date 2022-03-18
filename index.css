@@ -13,7 +13,7 @@
   }
   
   .is-append {
-    animation-duration: .6s;
+    animation-duration: 1s;
     animation-name: animFade;
   }
   

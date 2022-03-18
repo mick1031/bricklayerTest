@@ -4,7 +4,15 @@ function newBox() {
     return box;
 }
 
-var bricklayer = new Bricklayer(document.querySelector('.bricklayer'))
+var bricklayer = new Bricklayer(document.querySelector('.bricklayer'));
+
+bricklayer.on("afterAppend", function (e) {
+    var el = e.detail.item;
+    el.classList.add('is-append');
+    setTimeout(function () {
+      el.classList.remove('is-append');
+    }, 500);
+  });
 
 const imgs = [
     "./images/06.jpg",
@@ -19,24 +27,28 @@ const imgs = [
     "./images/09.jpg",
 ];
 
-setTimeout(() => { addImage(0) }, 700);
-
 function addImage(index) {
-
-    $('img').show();
-    $('img').addClass('is-append');
-    
 
     if (index < 10) {
         var box = newBox();
-        box.innerHTML = `<img style="display:none;" src="${imgs[index]}">`;
+        const img = $(`<img style="display:none;" src="${imgs[index]}">`).on(
+            'load', 
+            (e) => {
+                $(e.target).show()
+                    .addClass('is-append');
+                
+                setTimeout(() => { $(e.target).removeClass('is-append') }, 1200);
+
+                index = index + 1;
+                setTimeout(() => { addImage(index) }, 700);
+
+            }
+        );
+        
+        $(box).append(img);
         bricklayer.append(box);
 
-        index = index + 1;
-        setTimeout(() => { addImage(index) }, 700);
-    }
-    else
-    {
-        setTimeout(() => { $('img').removeClass('is-append'); }, 1000);
     }
 }
+
+addImage(0)
